@@ -1,7 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Index() {
+    const [name, setName] = useState('');
+    const [action, setAction] = useState(false);
+
+    const handleInputChange = (e) => {
+        const value = e.target.value; // Obtén el valor actualizado del campo de entrada
+        setName(value); // Actualiza el estado con el nuevo valor
+
+        // Verifica si el campo de entrada está vacío o no
+        if (value !== '') {
+            setAction(true);
+        } else {
+            setAction(false);
+        }
+    };
+
     return (
         <div className='h-screen'>
             <section>
@@ -10,16 +25,22 @@ function Index() {
             </section>
             <form>
                 <div className="mb-6 mx-10">
-                    <input type="email" id="email" required className="bg-gray-50 border m-auto justify-center flex border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" placeholder="john.doe@company.com" required />
+                    <input type="text" required value={name} onChange={handleInputChange} id="name" className="bg-gray-50 border m-auto justify-center flex border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" placeholder="Ingrese su nombre" required />
                 </div>
                 <div className='mx-10'>
-                    <Link to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
-                        Enviar
-                    </Link>
+                    {action ? (
+                        <Link to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                            Enviar
+                        </Link>
+                    ) : (
+                        <div className='bg-red-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                            Enviar
+                        </div>
+                    )}
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
-export default Index
+export default Index;
