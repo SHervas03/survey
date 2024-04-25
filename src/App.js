@@ -64,8 +64,8 @@ export default function App() {
       <section>
         <p className="text-center mt-8">{message}</p>
       </section>
-      <section>
-        <button>
+      <section className='w-full my-8'>
+        <button className='bg-amber-400 px-6 py-4 w-full'>
           Enviar
         </button>
       </section>
