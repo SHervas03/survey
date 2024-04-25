@@ -65,9 +65,9 @@ function Form() {
             <section>
                 <p className="text-center mt-8">{message}</p>
             </section>
-            <section className='w-full my-8'>
-                <button className='bg-amber-400 px-6 py-4 w-full'>
-                    Enviar
+            <section className=' my-8 mx-10'>
+                <button to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                    Guardar respuesta
                 </button>
             </section>
         </>
