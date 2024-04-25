@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import hervas from './img/hervas.png';
 import tabara from './img/tabara.png';
 import vaquero from './img/vaquero.png';
-import { showAlert } from 'tailwind-toastify';
 
 export default function App() {
+  const [selectedImages, setSelectedImages] = useState([]);
 
-  const handleShowAlert = (type, title, message) => {
-    showAlert(type, title, message, { duration: 5000 }); // Duración de 5000 milisegundos (5 segundos)
-  }
+  const toggleImageSelection = (image) => {
+    setSelectedImages(prevSelectedImages => {
+      if (prevSelectedImages.includes(image)) {
+        return prevSelectedImages.filter(selectedImage => selectedImage !== image);
+      } else {
+        return [...prevSelectedImages, image];
+      }
+    });
+  };
+
+  const isSelected = (image) => {
+    return selectedImages.includes(image);
+  };
 
   return (
     <>
@@ -18,14 +28,17 @@ export default function App() {
       </section>
       <section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-10">
-          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
-            <img className="h-auto max-w-full rounded-lg" src={hervas} alt="" />
+          <div onClick={() => toggleImageSelection(hervas)}>
+            <img className={`h-auto max-w-full rounded-lg ${isSelected(hervas) ? 'opacity-50' : ''}`} src={hervas} alt="" />
+            {isSelected(hervas) && <span className="absolute top-2 left-2 text-white bg-black bg-opacity-50 px-2 py-1 rounded">Seleccionado</span>}
           </div>
-          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
-            <img className="h-auto max-w-full rounded-lg" src={tabara} alt="" />
+          <div onClick={() => toggleImageSelection(tabara)}>
+            <img className={`h-auto max-w-full rounded-lg ${isSelected(tabara) ? 'opacity-50' : ''}`} src={tabara} alt="" />
+            {isSelected(tabara) && <span className="absolute top-2 left-2 text-white bg-black bg-opacity-50 px-2 py-1 rounded">Seleccionado</span>}
           </div>
-          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
-            <img className="h-auto max-w-full rounded-lg" src={vaquero} alt="" />
+          <div onClick={() => toggleImageSelection(vaquero)}>
+            <img className={`h-auto max-w-full rounded-lg ${isSelected(vaquero) ? 'opacity-50' : ''}`} src={vaquero} alt="" />
+            {isSelected(vaquero) && <span className="absolute top-2 left-2 text-white bg-black bg-opacity-50 px-2 py-1 rounded">Seleccionado</span>}
           </div>
         </div>
       </section>
