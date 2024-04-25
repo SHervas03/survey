@@ -1,8 +1,13 @@
 import hervas from './img/hervas.png'
 import tabara from './img/tabara.png'
 import vaquero from './img/vaquero.png'
-
+import { showAlert } from 'tailwind-toastify';
 export default function App() {
+
+  const handleShowAlert = (type, title, message) => {
+    showAlert(type, title, message);
+  }
+
   return (
     <>
       <section className="">
@@ -11,17 +16,19 @@ export default function App() {
       </section>
       <section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-10">
-          <div>
-            <img className="h-auto max-w-full rounded-lg" src={hervas} alt=""/>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+            <img className="h-auto max-w-full rounded-lg" src={hervas} alt="" />
           </div>
-          <div>
-            <img className="h-auto max-w-full rounded-lg" src={tabara} alt=""/>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+            <img className="h-auto max-w-full rounded-lg" src={tabara} alt="" />
           </div>
-          <div>
-            <img className="h-auto max-w-full rounded-lg" src={vaquero} alt=""/>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+            <img className="h-auto max-w-full rounded-lg" src={vaquero} alt="" />
           </div>
         </div>
       </section>
+
+
     </>
   )
 }
