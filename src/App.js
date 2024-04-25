@@ -1,3 +1,7 @@
+import hervas from './img/hervas.png'
+import tabara from './img/tabara.png'
+import vaquero from './img/vaquero.png'
+
 export default function App() {
   return (
     <>
@@ -8,13 +12,13 @@ export default function App() {
       <section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-10">
           <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt=""/>
+            <img className="h-auto max-w-full rounded-lg" src={hervas} alt=""/>
           </div>
           <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt=""/>
+            <img className="h-auto max-w-full rounded-lg" src={tabara} alt=""/>
           </div>
           <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt=""/>
+            <img className="h-auto max-w-full rounded-lg" src={vaquero} alt=""/>
           </div>
         </div>
       </section>
