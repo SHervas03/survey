@@ -1,11 +1,13 @@
-import hervas from './img/hervas.png'
-import tabara from './img/tabara.png'
-import vaquero from './img/vaquero.png'
+import React from 'react';
+import hervas from './img/hervas.png';
+import tabara from './img/tabara.png';
+import vaquero from './img/vaquero.png';
 import { showAlert } from 'tailwind-toastify';
+
 export default function App() {
 
   const handleShowAlert = (type, title, message) => {
-    showAlert(type, title, message);
+    showAlert(type, title, message, { duration: 5000 }); // Duración de 5000 milisegundos (5 segundos)
   }
 
   return (
@@ -16,19 +18,17 @@ export default function App() {
       </section>
       <section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-10">
-          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
             <img className="h-auto max-w-full rounded-lg" src={hervas} alt="" />
           </div>
-          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
             <img className="h-auto max-w-full rounded-lg" src={tabara} alt="" />
           </div>
-          <div onClick={() => handleShowAlert('success', 'Success', 'Showing success tailwind alert')}>
+          <div onClick={() => handleShowAlert('success', 'Success', 'Mostrando alerta de éxito')}>
             <img className="h-auto max-w-full rounded-lg" src={vaquero} alt="" />
           </div>
         </div>
       </section>
-
-
     </>
   )
 }
