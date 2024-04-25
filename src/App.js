@@ -1,8 +1,8 @@
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      TABARA LA TIENE GRANDE y hervas pequeña
-    
-    </h1>
+    <section className="flex m-auto justify-center my-8">
+      <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Encuesta de Cumpleaños</h1>
+      
+    </section>
   )
 }
