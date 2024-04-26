@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+function CookieBanner({ onAccept }) {
+    return (
+        <div className="bg-gray-200 text-lg py-4 text-center fixed bottom-0 left-0 w-full">
+            Este sitio utiliza cookies para mejorar tu experiencia.{' '}
+            <button onClick={onAccept} className="mx-2 underline">Aceptar</button>
+        </div>
+    );
+}
+
 
 function Index() {
     const [name, setName] = useState('');
     const [action, setAction] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [cookiesAccepted, setCookiesAccepted] = useState(false);
+
+    useEffect(() => {
+        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+        setCookiesAccepted(cookiesAccepted === 'true');
+    }, []);
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -22,9 +38,25 @@ function Index() {
     const handleSendClick = () => {
         if (!action) {
             setErrorMessage('Por favor ingrese su nombre.');
-            return;
+            return false;
         }
+
+        return true;
     };
+
+    const acceptCookies = () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        setCookiesAccepted(true);
+    };
+
+    const rejectCookies = () => {
+        localStorage.setItem('cookiesAccepted', 'false');
+        setCookiesAccepted(false);
+    };
+
+    if (!cookiesAccepted) {
+        return <CookieBanner onAccept={acceptCookies} onReject={rejectCookies} />;
+    }
 
     return (
         <div className='h-screen'>
@@ -39,7 +71,7 @@ function Index() {
                 </div>
                 <div className='mx-10'>
                     {action ? (
-                        <Link to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center' onClick={handleSendClick}>
+                        <Link to={`/form/${btoa(name)}`} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center' onClick={handleSendClick}>
                             Enviar
                         </Link>
                     ) : (
@@ -52,5 +84,6 @@ function Index() {
         </div>
     );
 }
+
 
 export default Index;

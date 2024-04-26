@@ -6,8 +6,8 @@ function RoutesSystem() {
     return (
         <BrowserRouter>
             <Routes>                
-                    <Route index element={<Index />} />          
-                    <Route path="Form" element={<Form />} />   
+                <Route index element={<Index />} />          
+                <Route path="/form/:username" element={<Form />} />   
             </Routes>
         </BrowserRouter>
     )
