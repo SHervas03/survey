@@ -4,16 +4,25 @@ import { Link } from 'react-router-dom';
 function Index() {
     const [name, setName] = useState('');
     const [action, setAction] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (e) => {
-        const value = e.target.value; // Obtén el valor actualizado del campo de entrada
-        setName(value); // Actualiza el estado con el nuevo valor
+        const value = e.target.value;
+        setName(value);
 
-        // Verifica si el campo de entrada está vacío o no
-        if (value !== '') {
+        if (value.trim() !== '') {
             setAction(true);
+            setErrorMessage('');
         } else {
             setAction(false);
+            setErrorMessage('Por favor ingrese su nombre.');
+        }
+    };
+
+    const handleSendClick = () => {
+        if (!action) {
+            setErrorMessage('Por favor ingrese su nombre.');
+            return;
         }
     };
 
@@ -26,14 +35,15 @@ function Index() {
             <form>
                 <div className="mb-6 mx-10">
                     <input type="text" required value={name} onChange={handleInputChange} id="name" className="bg-gray-50 border m-auto justify-center flex border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" placeholder="Ingrese su nombre" required />
+                    {errorMessage && <p className="text-red-500 text-sm ml-1">{errorMessage}</p>}
                 </div>
                 <div className='mx-10'>
                     {action ? (
-                        <Link to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                        <Link to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center' onClick={handleSendClick}>
                             Enviar
                         </Link>
                     ) : (
-                        <div className='bg-red-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                        <div className='bg-red-400 w-3/4 m-auto py-2 rounded flex justify-center' onClick={handleSendClick}>
                             Enviar
                         </div>
                     )}

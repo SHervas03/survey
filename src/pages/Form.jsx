@@ -40,6 +40,11 @@ function Form() {
         message = `Has seleccionado a ${selectedNames.join(' y a ')}`;
     }
 
+    const logSelection = () => {
+        const selectionArray = [isSelected(hervas) ? 1 : 0, isSelected(tabara) ? 1 : 0, isSelected(vaquero) ? 1 : 0];
+        console.log('Selección:', selectionArray);
+    };
+
     return (
         <>
             <section>
@@ -66,7 +71,7 @@ function Form() {
                 <p className="text-center mt-8">{message}</p>
             </section>
             <section className=' my-8 mx-10'>
-                <button to={'/form'} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
+                <button onClick={logSelection} className='bg-amber-400 w-3/4 m-auto py-2 rounded flex justify-center'>
                     Guardar respuesta
                 </button>
             </section>
@@ -74,4 +79,4 @@ function Form() {
     )
 }
 
-export default Form
+export default Form;
